@@ -1,6 +1,6 @@
-const dotenv = require('dotenv');
-dotenv.config()
+require("dotenv").config();
 
 module.exports = {
-    mongoURI: `mongodb://${process.env.DB_NAME}:${process.env.DB_PASS}@ds025772.mlab.com:25772/mern_shopping_list`
-}
+  mongoURI: `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0-im0dw.mongodb.net/test?retryWrites=true&w=majority`,
+  jwtSecret: `${process.env.JWT_SECRET}`,
+};
