@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
@@ -30,6 +30,11 @@ export default function LoginModal() {
     password: "",
   });
 
+  const toggle = useCallback(() => {
+    dispatch(clearErrors());
+    setModal(!modal);
+  }, [modal, dispatch]);
+
   useEffect(() => {
     if (error.id === "LOGIN_FAIL") {
       setMsg(error.msg.msg);
@@ -43,12 +48,7 @@ export default function LoginModal() {
         toggle();
       }
     }
-  }, [error, isAuthenticated, modal]);
-
-  const toggle = () => {
-    dispatch(clearErrors());
-    setModal(!modal);
-  };
+  }, [error, isAuthenticated, modal, toggle]);
 
   const onSubmit = (event) => {
     event.preventDefault();
